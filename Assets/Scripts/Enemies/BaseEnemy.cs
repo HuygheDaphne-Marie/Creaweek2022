@@ -15,6 +15,12 @@ public abstract class BaseEnemy : MonoBehaviour
         Blackboard = new Blackboard();
     }
 
+    private void Start()
+    {
+        Blackboard.AddData("ThisEnemy", gameObject);
+        Blackboard.AddData("MoveTarget", Vector3.zero);
+    }
+
     private void Update()
     {
         BehaviourTree.Update();
