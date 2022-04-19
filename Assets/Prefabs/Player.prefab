@@ -93,6 +93,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c5725f7f-61d0-4c18-ba86-69c52da06425
     m_ActionName: PlayerInput/WestButton
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3703571436874305791}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 72376784-0c3b-40b8-8522-a44f0a8b6980
+    m_ActionName: PlayerInput/Look[/XInputControllerWindows/rightStick]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerInput

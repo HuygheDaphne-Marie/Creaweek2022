@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float MovementSpeed = 10;
     private Vector2 _movementInput = Vector2.zero;
+    private Vector2 _lookInput = Vector2.zero;
     public Vector2 MovementInput
     {
         get { return _movementInput; }
@@ -21,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     public void OnMovement(InputAction.CallbackContext context)
     {
         _movementInput = context.ReadValue<Vector2>();
+    }
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        _lookInput = context.ReadValue<Vector2>();
     }
 
     public void Start()
@@ -40,20 +45,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Calculate the movement vector from the player input, taking into account the map tilt (and compensating for the ortographic FOV skew)
-        Vector3 movementDir = new Vector3(_movementInput.x, 0, _movementInput.y);
-        Vector3 movement = movementDir * MovementSpeed;
+        Vector3 move = new Vector3(_movementInput.x, 0, _movementInput.y);
+        _controller.Move(move * Time.deltaTime * MovementSpeed);
 
-        // Update the forward vector
-        Velocity += movement * Time.deltaTime;
-        if (movementDir != Vector3.zero)
+        Vector3 look = new Vector3(_lookInput.x, 0, _lookInput.y);
+        if (look != Vector3.zero)
         {
-            gameObject.transform.forward = movementDir.normalized;
+            gameObject.transform.forward = look.normalized;
         }
 
-        // Add the gravity effect to the velocity
         Velocity.y += GravityValue * Time.deltaTime;
-
-        // And actually move, according to the calculated velocity
         _controller.Move(Velocity * Time.deltaTime);
     }
 }
